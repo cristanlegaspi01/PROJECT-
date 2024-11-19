@@ -1,0 +1,116 @@
+/* Register.css */
+
+.Register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    font-family: Arial, sans-serif;
+  }
+  
+  .main-container {
+    width: 400px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+  }
+  
+  h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333333;
+    margin-bottom: 1rem;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 0.9rem;
+    color: #555555;
+    margin-bottom: 0.3rem;
+  }
+  
+  .form-group input {
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #0066cc;
+  }
+  
+  .errors {
+    color: #cc0000;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+  }
+  
+  .show-password {
+    font-size: 0.9rem;
+    color: #0066cc;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-top: -0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .show-password:hover {
+    text-decoration: underline;
+  }
+  
+  .submit-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background-color: #0066cc;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0055a3;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .register-container {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .register-container a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  
+  .register-container a:hover {
+    text-decoration: underline;
+  }
+  
