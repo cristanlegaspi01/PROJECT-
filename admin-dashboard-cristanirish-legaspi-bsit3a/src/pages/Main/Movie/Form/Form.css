@@ -1,0 +1,78 @@
+.searched-movie {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.search-container p:hover {
+  background-color: lightblue;
+}
+
+.poster-image {
+  width: 150px;
+  height: auto;
+}
+
+.container {
+  overflow: auto;
+}
+
+nav {
+  margin-top: 2rem;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  display: inline;
+  border: solid;
+  border-width: 1px 1px 0 1px;
+  margin: 0 5px 0 0;
+}
+
+
+button {
+  border: 2px solid #007BFF; 
+  background-color: #fff;
+  color: #007BFF;
+  padding: 10px 20px;
+  margin-top: 10px; 
+  border-radius: 4px; 
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: #007BFF; 
+  color: white; 
+}
+
+button:disabled {
+  background-color: #f0f0f0;
+  color: #999;
+  cursor: not-allowed;
+  border: 2px solid #ddd;
+}
+
+.back-button {
+  margin-top: 15px; 
+  border-color: #6c757d; 
+  color: #6c757d; 
+}
+
+.back-button:hover {
+  background-color: #6c757d; 
+  color: white;
+}
+
+button {
+  border: 2px solid #007BFF; 
+  background-color: #fff;
+  color: #007BFF;
+  padding: 10px 20px; 
+  margin-top: 10px; 
+  border-radius: 4px; 
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
