@@ -1,0 +1,168 @@
+
+.lists-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-container {
+  margin-bottom: 20px;
+  text-align: right;
+  color: #ddd;
+}
+
+.create-button {
+  padding: 12px 24px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.create-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.create-button:active {
+  transform: scale(1);
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.movie-lists {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.movie-lists th,
+.movie-lists td {
+  text-align: left;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.movie-lists th {
+  background-color: #f4f4f4;
+  font-size: 16px;
+  font-weight: 700;
+  color: #555;
+}
+
+.movie-lists tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.movie-lists tr:hover {
+  background-color: #e6f7ff;
+  transition: background-color 0.3s ease;
+}
+
+.movie-lists td {
+  color: #555;
+}
+
+.movie-lists td a {
+  color: #2196f3;
+  text-decoration: none;
+}
+
+.movie-lists td a:hover {
+  text-decoration: underline;
+}
+
+/* Button Styles */
+.edit-button {
+  padding: 10px 16px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-button:hover {
+  background-color: #0b7dda;
+  transform: scale(1.05);
+}
+
+.edit-button:active {
+  transform: scale(1);
+}
+
+.delete-button {
+  padding: 10px 16px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+.delete-button:active {
+  transform: scale(1);
+}
+
+button {
+  margin-right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .create-container {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .movie-lists th, .movie-lists td {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .movie-lists {
+    font-size: 14px;
+  }
+
+  .create-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .edit-button, .delete-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .movie-lists th, .movie-lists td {
+    font-size: 11px;
+    padding: 8px;
+  }
+}
