@@ -1,0 +1,71 @@
+.review-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.review-container h1 {
+  text-align: center;
+  font-size: 2.4rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.movie-details {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.movie-poster {
+  width: 250px;
+  height: 375px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.movie-info {
+  flex: 1;
+}
+
+.movie-info p {
+  font-size: 1.1rem;
+  color: #34495e;
+  line-height: 1.6;
+  margin: 12px 0;
+}
+
+.movie-info strong {
+  color: #2c3e50;
+}
+
+.movie-info p span {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  font-size: 1.1rem;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #2980b9;
+}

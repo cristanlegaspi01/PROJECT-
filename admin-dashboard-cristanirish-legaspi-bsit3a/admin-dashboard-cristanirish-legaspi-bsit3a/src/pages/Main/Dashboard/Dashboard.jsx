@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Dashboard.css"; 
+import { Link } from "react-router-dom"; 
+import "./Dashboard.css";
 
 const Dashboard = () => {
-  const [movies, setMovies] = useState([]); 
-  const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null); 
-
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -30,13 +30,13 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <h1 className="dashboard-title">Movie Dashboard</h1>
 
-      {/* Movie Table */}
       <div className="table-container">
         <table className="movie-table">
           <thead>
             <tr>
               <th>Title</th>
               <th>Release Date</th>
+              <th>Actions</th> {}
             </tr>
           </thead>
           <tbody>
@@ -44,6 +44,15 @@ const Dashboard = () => {
               <tr key={movie.id}>
                 <td>{movie.title}</td>
                 <td>{movie.releaseDate}</td>
+                <td>
+                  {}
+                  <button
+                    onClick={() => window.location.href = `/main/movies/form/review`}
+                    className="review-button"
+                  >
+                    Review
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

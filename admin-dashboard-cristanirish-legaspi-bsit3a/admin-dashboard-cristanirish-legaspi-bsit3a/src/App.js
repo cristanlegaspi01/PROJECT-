@@ -1,14 +1,17 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-import Dashboard from './pages/Main/Dashboard/Dashboard'; // Import Dashboard
+import Dashboard from './pages/Main/Dashboard/Dashboard';
 import Main from './pages/Main/Main';
 import Movie from './pages/Main/Movie/Movie';
 import Lists from './pages/Main/Movie/Lists/Lists';
 import Form from './pages/Main/Movie/Form/Form';
 import Login from './pages/Public/Login/Login';
 import Register from './pages/Public/Register/Register';
+import CastAndCrew from './pages/Main/Movie/Form/Cast/Cast';
+import Photos from './pages/Main/Movie/Form/Photos/Photos';
+import Videos from './pages/Main/Movie/Form/Videos/Videos';
+import Review from './pages/Main/Movie/Form/Review';  // Ensure Review is correctly imported
 
 const router = createBrowserRouter([
   {
@@ -16,7 +19,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: '/Register', 
+    path: '/Register',
     element: <Register />,
   },
   {
@@ -26,6 +29,23 @@ const router = createBrowserRouter([
       {
         path: '/main/dashboard',
         element: <Dashboard />,
+      },
+      {
+        // Updated to capture movieId dynamically
+        path: '/main/movies/form/review/',  
+        element: <Review />,  // Review route now expects a movieId
+      },
+      {
+        path: '/main/movies/form/:movieId/cast-and-crews',
+        element: <CastAndCrew />,
+      },
+      {
+        path: '/main/movies/form/:movieId/photos',
+        element: <Photos />,
+      },
+      {
+        path: '/main/movies/form/:movieId/videos',
+        element: <Videos />,
       },
       {
         path: '/main/movies',
@@ -38,34 +58,7 @@ const router = createBrowserRouter([
           {
             path: '/main/movies/form/:movieId?',
             element: <Form />,
-            children: [
-              {
-                path: '/main/movies/form/:movieId',
-                element: (
-                  <h1>Change this for cast & crew CRUD functionality.</h1>
-                ),
-              },
-              {
-                path: '/main/movies/form/:movieId/cast-and-crews',
-                element: (
-                  <h1>
-                    Change this for cast & crew CRUD functionality component.
-                  </h1>
-                ),
-              },
-              {
-                path: '/main/movies/form/:movieId/photos',
-                element: (
-                  <h1>Change this for photos CRUD functionality component.</h1>
-                ),
-              },
-              {
-                path: '/main/movies/form/:movieId/videos',
-                element: (
-                  <h1>Change this for videos CRUD functionality component.</h1>
-                ),
-              },
-            ],
+            children: [],
           },
         ],
       },
@@ -75,7 +68,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <RouterProvider router={router} />
     </div>
   );

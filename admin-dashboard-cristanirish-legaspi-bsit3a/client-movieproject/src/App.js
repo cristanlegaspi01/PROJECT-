@@ -9,23 +9,23 @@ import Register from './pages/Public/Register/Register';
 
 const router = createBrowserRouter([
   {
-    path: '/',  // Login page
+    path: '/',  
     element: <Login />,
   },
   {
-    path: '/register',  // Register page
+    path: '/register',  
     element: <Register />,
   },
   {
-    path: '/main',  // Main route
+    path: '/main', 
     element: <Main />,
     children: [
       {
-        path: '',  // Home page (relative path, not '/')
+        path: '',  
         element: <Home />,
       },
       {
-        path: 'view/:movieId',  // Movie view page (relative path)
+        path: 'view/:movieId',  
         element: <View />,
       },
     ],
