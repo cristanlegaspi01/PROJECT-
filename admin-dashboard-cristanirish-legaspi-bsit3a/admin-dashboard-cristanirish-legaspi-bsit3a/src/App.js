@@ -11,7 +11,7 @@ import Register from './pages/Public/Register/Register';
 import CastAndCrew from './pages/Main/Movie/Form/Cast/Cast';
 import Photos from './pages/Main/Movie/Form/Photos/Photos';
 import Videos from './pages/Main/Movie/Form/Videos/Videos';
-import Review from './pages/Main/Movie/Form/Review';  // Ensure Review is correctly imported
+import Review from './pages/Main/Movie/Form/Review'; // Review Component Import
 
 const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: '/Register',
+    path: '/register',
     element: <Register />,
   },
   {
@@ -27,38 +27,36 @@ const router = createBrowserRouter([
     element: <Main />,
     children: [
       {
-        path: '/main/dashboard',
+        path: 'dashboard',
         element: <Dashboard />,
       },
       {
-        // Updated to capture movieId dynamically
-        path: '/main/movies/form/review/',  
-        element: <Review />,  // Review route now expects a movieId
+        path: 'movies/form/:movieId/review', // Dynamic movieId route
+        element: <Review />,
       },
       {
-        path: '/main/movies/form/:movieId/cast-and-crews',
+        path: 'movies/form/:movieId/cast-and-crews',
         element: <CastAndCrew />,
       },
       {
-        path: '/main/movies/form/:movieId/photos',
+        path: 'movies/form/:movieId/photos',
         element: <Photos />,
       },
       {
-        path: '/main/movies/form/:movieId/videos',
+        path: 'movies/form/:movieId/videos',
         element: <Videos />,
       },
       {
-        path: '/main/movies',
+        path: 'movies',
         element: <Movie />,
         children: [
           {
-            path: '/main/movies',
+            path: '',
             element: <Lists />,
           },
           {
-            path: '/main/movies/form/:movieId?',
+            path: 'form/:movieId?',
             element: <Form />,
-            children: [],
           },
         ],
       },
