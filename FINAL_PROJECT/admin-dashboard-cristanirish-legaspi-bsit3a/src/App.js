@@ -8,7 +8,7 @@ import Lists from './pages/Main/Movie/Lists/Lists';
 import Form from './pages/Main/Movie/Form/Form';
 import Login from './pages/Public/Login/Login';
 import Register from './pages/Public/Register/Register';
-import Review from './pages/Main/Movie/Form/Review'; // Review Component Import
+import Review from './pages/Main/Movie/Form/Review'; 
 
 const router = createBrowserRouter([
   {
@@ -25,10 +25,10 @@ const router = createBrowserRouter([
     children: [
       
       {
-        // Updated to capture movieId dynamically
+        
         path: '/main/movies/form/review/',  
-        element: <Review />,  // Review route now expects a movieId
-        path: 'movies/form/:movieId/review', // Dynamic movieId route
+        element: <Review />,  
+        path: 'movies/form/:movieId/review', 
         element: <Review />,
       },
       {

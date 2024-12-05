@@ -26,7 +26,6 @@ const Form = () => {
   let { movieId } = useParams();
   const navigate = useNavigate();
 
-  // Fetch movie details, cast, photos, and videos for editing
   useEffect(() => {
     if (movieId) {
       setIsLoading(true);
@@ -57,7 +56,7 @@ const Form = () => {
             voteAverage: response.data.voteAverage,
           });
 
-          // Fetch additional TMDb details (cast, photos, videos)
+          
           fetchMovieExtras(response.data.tmdbId);
         })
         .catch(() => {
@@ -71,22 +70,22 @@ const Form = () => {
 
   const fetchMovieExtras = async (tmdbId) => {
     try {
-      const apiKey = "your_tmdb_api_key"; // Use your API key here
+      const apiKey = "0174e9e2006869bcf044f890f49d7057"; 
       const baseApiUrl = `https://api.themoviedb.org/3/movie/${tmdbId}`;
       const headers = {
         Accept: "application/json",
         Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTc0ZTllMjAwNjg2OWJjZjA0NGY4OTBmNDlkNzA1NyIsIm5iZiI6MTczMzI5ODU4Ny4wMTgsInN1YiI6IjY3NTAwOTliOWJlZTY0NjljMTQ1NzFlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._IBJtymwYBwB4GY3s7hLSKhtVaGjO0avfuxzE8pguWE", // Replace with actual access token
       };
 
-      // Fetch cast
+      
       const castResponse = await axios.get(`${baseApiUrl}/credits`, { headers });
-      setCast(castResponse.data.cast.slice(0, 10)); // Show top 10 cast members
+      setCast(castResponse.data.cast.slice(0, 10)); 
 
-      // Fetch photos
+   
       const photosResponse = await axios.get(`${baseApiUrl}/images`, { headers });
-      setPhotos(photosResponse.data.backdrops.slice(0, 5)); // Show top 5 photos
+      setPhotos(photosResponse.data.backdrops.slice(0, 5)); 
 
-      // Fetch videos
+    
       const videosResponse = await axios.get(`${baseApiUrl}/videos`, { headers });
       setVideos(videosResponse.data.results);
     } catch (error) {
@@ -109,7 +108,7 @@ const Form = () => {
       url: `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${currentPage}`,
       headers: {
         Accept: "application/json",
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTc0ZTllMjAwNjg2OWJjZjA0NGY4OTBmNDlkNzA1NyIsIm5iZiI6MTczMzI5ODU4Ny4wMTgsInN1YiI6IjY3NTAwOTliOWJlZTY0NjljMTQ1NzFlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._IBJtymwYBwB4GY3s7hLSKhtVaGjO0avfuxzE8pguWE", // Replace with actual access token
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTc0ZTllMjAwNjg2OWJjZjA0NGY4OTBmNDlkNzA1NyIsIm5iZiI6MTczMzI5ODU4Ny4wMTgsInN1YiI6IjY3NTAwOTliOWJlZTY0NjljMTQ1NzFlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._IBJtymwYBwB4GY3s7hLSKhtVaGjO0avfuxzE8pguWE",
       },
     })
       .then((response) => {
@@ -214,7 +213,7 @@ const Form = () => {
       {error && <div className="error-message">{error}</div>}
       {isLoading && <div className="loading-message">Loading...</div>}
 
-      {/* Search functionality for "Create Movie" */}
+      {}
       {!movieId && (
         <div className="search-container">
           <input
@@ -230,7 +229,7 @@ const Form = () => {
         </div>
       )}
 
-      {/* Display search results */}
+      {}
       {!movieId && searchedMovieList.length > 0 && (
         <div className="search-results">
           <h2>Search Results</h2>
@@ -251,7 +250,7 @@ const Form = () => {
         </div>
       )}
 
-      {/* Form for editing/creating */}
+      {}
       <div className="container">
         <form onSubmit={(e) => e.preventDefault()}>
           {selectedMovie && (
@@ -316,13 +315,13 @@ const Form = () => {
               onClick={handleSave}
               disabled={isLoading}
             >
-              {movieId ? "Update" : "Create"}
+              {movieId ? "Save" : "Create"}
             </button>
           </div>
         </form>
       </div>
 
-      {/* Show Cast, Photos, and Videos when editing */}
+      { }
       {movieId && (
         <>
           <div className="extras">
@@ -371,7 +370,12 @@ const Form = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {video.name}
+                    <img
+                      src={`https://img.youtube.com/vi/${video.key}/hqdefault.jpg`}
+                      alt={video.name}
+                      className="video-thumbnail"
+                    />
+                    <p>{video.name}</p>
                   </a>
                 </li>
               ))}

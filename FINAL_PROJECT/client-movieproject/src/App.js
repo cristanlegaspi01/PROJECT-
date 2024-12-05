@@ -1,3 +1,4 @@
+import logo from './logo.svg';
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './pages/Main/Main';
@@ -9,23 +10,23 @@ import Register from './pages/Public/Register/Register';
 
 const router = createBrowserRouter([
   {
-    path: '/',  
+    path: '/login',
     element: <Login />,
   },
   {
-    path: '/register',  
-    element: <Register />,
-  },
-  {
-    path: '/main', 
+  path: '/register',
+  element: <Register />,
+},
+{
+    path: '/',
     element: <Main />,
     children: [
       {
-        path: '',  
+        path: '/home',
         element: <Home />,
       },
       {
-        path: 'view/:movieId',  
+        path: '/view/:movieId?',
         element: <View />,
       },
     ],

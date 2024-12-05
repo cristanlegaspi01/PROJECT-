@@ -4,22 +4,55 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./Review.css";
 
 const Review = () => {
-  const { movieId } = useParams(); // Get the movieId from the URL
+  const { movieId } = useParams(); 
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [cast, setCast] = useState([]);
+  const [photos, setPhotos] = useState([]);
+  const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
         const response = await axios.get(`/movies/${movieId}`);
         setMovie(response.data);
+
+        const tmdbId = response.data.tmdbId;
+        if (tmdbId) {
+          await fetchMovieExtras(tmdbId);
+        }
       } catch (err) {
         console.error(err);
         setError("Failed to fetch movie details. Please try again later.");
       } finally {
         setLoading(false);
+      }
+    };
+
+    const fetchMovieExtras = async (tmdbId) => {
+      try {
+        const apiKey = "0174e9e2006869bcf044f890f49d7057"; 
+        const baseApiUrl = `https://api.themoviedb.org/3/movie/${tmdbId}`;
+        const headers = {
+          Accept: "application/json",
+          Authorization: `Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTc0ZTllMjAwNjg2OWJjZjA0NGY4OTBmNDlkNzA1NyIsIm5iZiI6MTczMzI5ODU4Ny4wMTgsInN1YiI6IjY3NTAwOTliOWJlZTY0NjljMTQ1NzFlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._IBJtymwYBwB4GY3s7hLSKhtVaGjO0avfuxzE8pguWE`, // Replace with TMDb access token
+        };
+
+        
+        const castResponse = await axios.get(`${baseApiUrl}/credits`, { headers });
+        setCast(castResponse.data.cast.slice(0, 10)); // 
+
+        
+        const photosResponse = await axios.get(`${baseApiUrl}/images`, { headers });
+        setPhotos(photosResponse.data.backdrops.slice(0, 5)); 
+
+        
+        const videosResponse = await axios.get(`${baseApiUrl}/videos`, { headers });
+        setVideos(videosResponse.data.results);
+      } catch (error) {
+        console.error("Error fetching movie extras:", error);
       }
     };
 
@@ -51,6 +84,68 @@ const Review = () => {
           <p><strong>Total Votes:</strong> {movie.voteCount || "N/A"}</p>
         </div>
       </div>
+
+      {}
+      <div className="extras">
+        <h2>Cast</h2>
+        <ul className="cast-list">
+          {cast.map((actor) => (
+            <li key={actor.cast_id} className="cast-item">
+              {actor.profile_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                  alt={actor.name}
+                  className="cast-photo"
+                />
+              ) : (
+                <div className="no-photo">No Photo</div>
+              )}
+              <div className="cast-details">
+                <p className="cast-name">{actor.name}</p>
+                <p className="cast-character">{actor.character}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {}
+      <div className="extras">
+        <h2>Photos</h2>
+        <div className="photos">
+          {photos.map((photo) => (
+            <img
+              key={photo.file_path}
+              src={`https://image.tmdb.org/t/p/w500${photo.file_path}`}
+              alt="Movie Photo"
+            />
+          ))}
+        </div>
+      </div>
+
+      {}
+      <div className="extras">
+        <h2>Videos</h2>
+        <ul className="video-list">
+          {videos.map((video) => (
+            <li key={video.id}>
+              <a
+                href={`https://www.youtube.com/watch?v=${video.key}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${video.key}/hqdefault.jpg`}
+                  alt={video.name}
+                  className="video-thumbnail"
+                />
+                <p>{video.name}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <button onClick={() => navigate(-1)} className="back-button">
         Back to Dashboard
       </button>

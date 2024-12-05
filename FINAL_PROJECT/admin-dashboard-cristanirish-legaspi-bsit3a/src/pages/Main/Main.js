@@ -18,7 +18,7 @@ function Main() {
     }
   }, [accessToken]);
 
-  // Extract `movieId` from the URL and determine if it's a movie form page
+ 
   const movieFormMatch = location.pathname.match(/\/main\/movies\/form\/(\d+)/);
   const movieId = movieFormMatch ? movieFormMatch[1] : null;
 
@@ -27,16 +27,16 @@ function Main() {
       <div className="container">
         <div className="navigation">
           <ul>
-            {/* Dashboard Link */}
+            {}
             <li>
               <a href="/main/dashboard">Dashboard</a>
             </li>
-            {/* Movies Link */}
+            {}
             <li>
               <a href="/main/movies">Movies</a>
             </li>
-            {/* Conditional Links for Movie Form Pages */}
-            {/* Logout Link */}
+            {}
+            {}
             <li className="logout">
               <button onClick={handleLogout} className="link-button">
                 Logout

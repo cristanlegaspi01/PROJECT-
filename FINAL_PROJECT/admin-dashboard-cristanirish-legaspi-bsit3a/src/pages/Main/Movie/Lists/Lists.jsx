@@ -34,7 +34,7 @@ const Lists = () => {
             Authorization: `Bearer ${accessToken}`,
           },
         });
-        // Update the list locally
+       
         setLists((prevLists) => prevLists.filter((movie) => movie.id !== id));
       } catch (error) {
         console.error('Error deleting movie:', error);

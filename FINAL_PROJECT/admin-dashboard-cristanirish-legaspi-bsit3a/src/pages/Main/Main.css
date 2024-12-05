@@ -1,36 +1,64 @@
+/* Main Layout */
 .Main {
   display: flex;
   overflow: hidden;
   max-height: 100vh;
   background-color: #1c1c1c;
   font-family: 'Roboto', sans-serif;
+  position: relative;
+  animation: fadeInBackground 2s ease-in-out;
 }
 
+/* Smooth Background Animation in Main */
+@keyframes fadeInBackground {
+  0% {
+    background-color: #000;
+  }
+  100% {
+    background-color: #1c1c1c;
+  }
+}
+
+/* Container for Content */
 .Main .container {
   display: flex;
   width: 100vw;
   transition: all 0.5s ease-in-out;
 }
 
+/* Outlet section with Cinematic Background */
 .Main .container .outlet {
   flex-grow: 3;
   padding: 2rem;
-  background-color: #2c3e50;
-  color: #ecf0f1;
+  background: url('CIne.jpg') no-repeat center center/cover;
+  color: #e0e0e0;
   overflow-y: auto;
   position: relative;
-  z-index: 2;
-  box-sizing: border-box;
+ 
 }
 
+/* Smooth Background Animation */
+@keyframes cinematic-background {
+  0% {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  }
+  50% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0));
+  }
+  100% {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  }
+}
+
+/* Sidebar Navigation */
 .Main .container .navigation {
-  background-color: #34495e;
+  background-color: rgba(44, 62, 80, 0.95); /* Darker with more opacity */
   height: 100vh;
   padding-top: 50px;
   width: 240px;
   position: relative;
   z-index: 3;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -38,6 +66,7 @@
   transition: all 0.3s ease-out;
 }
 
+/* Sidebar Gradient Effect */
 .Main .container .navigation::after {
   content: "";
   position: absolute;
@@ -48,6 +77,7 @@
   background: linear-gradient(to bottom, rgba(44, 62, 80, 0.3), transparent);
 }
 
+/* Navigation List Styling */
 .Main .container .navigation ul {
   list-style: none;
   padding: 0;
@@ -66,6 +96,7 @@
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
+  position: relative;
 }
 
 .Main .container .navigation ul li.active,
@@ -74,45 +105,34 @@
   color: #fff;
   transform: scale(1.05);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
+
 
 .Main .container .navigation ul li a {
   text-decoration: none;
   color: inherit;
+  display: block;
+  width: 100%;
 }
 
 .Main .container .navigation ul li.logout {
   position: absolute;
-  bottom: 100px; 
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   padding: 15px 40px;
   border-radius: 30px;
   color: white;
   font-size: 1.1rem;
+  background-color: #c0392b;
   transition: all 0.3s ease-in-out;
   z-index: 10;
 }
+
 .Main .container .navigation ul li.logout:hover {
-  background-color: #c0392b;
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(231, 76, 60, 0.7);
-}
-
-@keyframes cinematic-background {
-  0% {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-  }
-  50% {
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0));
-  }
-  100% {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-  }
-}
-
-.Main .container .outlet {
-  animation: cinematic-background 5s ease-in-out infinite;
 }
 
 @media (max-width: 768px) {
@@ -136,5 +156,12 @@
 
   .Main .container .navigation ul li.logout {
     padding: 12px 30px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .Main .container .outlet {  
+    padding: 1rem;
   }
 }
