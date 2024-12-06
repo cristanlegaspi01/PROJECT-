@@ -1,8 +1,9 @@
-.featured-movie-container {
+.featured-list-container {
+  width: 100%;
+
 }
-.page-title {
-  font-size: 4.5rem;
-}
+
+
 .list-container {
   display: flex;
   flex-wrap: wrap;

@@ -10,23 +10,23 @@ import Register from './pages/Public/Register/Register';
 
 const router = createBrowserRouter([
   {
-    path: '/login',
+    path: '/',
     element: <Login />,
   },
   {
-  path: '/register',
-  element: <Register />,
-},
-{
-    path: '/',
+    path: '/register',
+    element: <Register />,
+  },
+  {
+    path: '/main',
     element: <Main />,
     children: [
       {
-        path: '/home',
+        path: 'home', // This is relative to '/main'
         element: <Home />,
       },
       {
-        path: '/view/:movieId?',
+        path: 'view/:movieId', // Now a relative path under '/main'
         element: <View />,
       },
     ],
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <MovieContextProvider>
         <RouterProvider router={router} />
       </MovieContextProvider>

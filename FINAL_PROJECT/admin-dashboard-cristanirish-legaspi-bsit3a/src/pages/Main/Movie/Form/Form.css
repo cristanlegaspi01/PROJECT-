@@ -258,8 +258,8 @@ textarea {
 }
 
 .container, .movie-details, .form-field input, .form-field textarea {
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  background-color: rgba(235, 223, 223, 0.6);
+  color: #180202;
 }
 
 .container h2, .movie-details h2, .form-field label {

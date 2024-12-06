@@ -9,6 +9,8 @@ function View() {
   const { movieId } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false); 
+  const [currentVideoUrl, setCurrentVideoUrl] = useState(""); 
 
   useEffect(() => {
     if (movieId) {
@@ -20,9 +22,9 @@ function View() {
     try {
       setLoading(true);
       const response = await axios.get(`/movies/${movieId}`);
-      setMovie(response.data); // Update movie context with fetched data
+      setMovie(response.data); 
 
-      // Fetch additional movie details (e.g., cast, photos, videos)
+      
       const tmdbId = response.data.tmdbId;
       if (tmdbId) {
         fetchMovieExtras(tmdbId);
@@ -37,14 +39,14 @@ function View() {
 
   const fetchMovieExtras = async (tmdbId) => {
     try {
-      const apiKey = 'your_tmdb_api_key'; // Replace with your TMDb API key
+      const apiKey = 'your_tmdb_api_key'; 
       const baseApiUrl = `https://api.themoviedb.org/3/movie/${tmdbId}`;
       const headers = {
         Accept: 'application/json',
         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTc0ZTllMjAwNjg2OWJjZjA0NGY4OTBmNDlkNzA1NyIsIm5iZiI6MTczMzI5ODU4Ny4wMTgsInN1YiI6IjY3NTAwOTliOWJlZTY0NjljMTQ1NzFlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._IBJtymwYBwB4GY3s7hLSKhtVaGjO0avfuxzE8pguWE`, // Replace with actual TMDb access token
       };
 
-      // Fetch cast, photos, and videos
+     
       const castResponse = await axios.get(`${baseApiUrl}/credits`, { headers });
       const castData = castResponse.data.cast.slice(0, 10);
 
@@ -54,7 +56,7 @@ function View() {
       const videosResponse = await axios.get(`${baseApiUrl}/videos`, { headers });
       const videosData = videosResponse.data.results;
 
-      // Update movie state with fetched extras
+    
       setMovie((prevMovie) => ({
         ...prevMovie,
         cast: castData,
@@ -66,29 +68,58 @@ function View() {
     }
   };
 
+  const handleVideoClick = (videoKey) => {
+    setCurrentVideoUrl(`https://www.youtube.com/embed/${videoKey}`); // Set the YouTube embed URL
+    setIsVideoPlaying(true); 
+  };
+
+  const handleCloseVideo = () => {
+    setIsVideoPlaying(false); 
+    setCurrentVideoUrl(""); 
+  };
+
   return (
     <div className="view-container">
       {loading ? (
         <p>Loading...</p>
       ) : movie ? (
         <>
-          {/* Movie Banner */}
-          <div className="movie-banner" style={{ backgroundImage: `url(${movie.posterPath ? `https://image.tmdb.org/t/p/original/${movie.posterPath}` : ''})` }}>
+          {}
+          <div
+            className="movie-banner"
+            style={{
+              backgroundImage: `url(${
+                movie.posterPath
+                  ? `https://image.tmdb.org/t/p/original/${movie.posterPath}`
+                  : ''
+              })`,
+            }}
+          >
             <div className="banner-overlay">
               <h1 className="movie-title">{movie.title}</h1>
             </div>
           </div>
 
-          {/* Movie Details */}
+          {}
           <div className="movie-details">
             <h3 className="movie-overview">{movie.overview}</h3>
-            <p><strong>Release Date:</strong> {new Date(movie.releaseDate).toLocaleDateString() || 'Unknown'}</p>
-            <p><strong>Popularity:</strong> {movie.popularity?.toFixed(2) || 'N/A'}</p>
-            <p><strong>Vote Average:</strong> {movie.voteAverage ? `${movie.voteAverage}/10` : 'Not rated'}</p>
-            <p><strong>Total Votes:</strong> {movie.voteCount || 'N/A'}</p>
+            <p>
+              <strong>Release Date:</strong>{' '}
+              {new Date(movie.releaseDate).toLocaleDateString() || 'Unknown'}
+            </p>
+            <p>
+              <strong>Popularity:</strong> {movie.popularity?.toFixed(2) || 'N/A'}
+            </p>
+            <p>
+              <strong>Vote Average:</strong>{' '}
+              {movie.voteAverage ? `${movie.voteAverage}/10` : 'Not rated'}
+            </p>
+            <p>
+              <strong>Total Votes:</strong> {movie.voteCount || 'N/A'}
+            </p>
           </div>
 
-          {/* Cast */}
+          {}
           {movie.cast && movie.cast.length > 0 && (
             <div className="section">
               <h2>Cast</h2>
@@ -114,18 +145,14 @@ function View() {
             </div>
           )}
 
-          {/* Videos */}
+          {}
           {movie.videos && movie.videos.length > 0 && (
             <div className="section">
               <h2>Videos</h2>
               <ul className="video-list">
                 {movie.videos.map((video) => (
-                  <li key={video.id}>
-                    <a
-                      href={`https://www.youtube.com/watch?v=${video.key}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                  <li key={video.id} onClick={() => handleVideoClick(video.key)}>
+                    <a href={`https://www.youtube.com/watch?v=${video.key}`} target="_blank" rel="noopener noreferrer">
                       <img
                         src={`https://img.youtube.com/vi/${video.key}/hqdefault.jpg`}
                         alt={video.name}
@@ -139,7 +166,7 @@ function View() {
             </div>
           )}
 
-          {/* Photos */}
+          {}
           {movie.photos && movie.photos.length > 0 && (
             <div className="section">
               <h2>Photos</h2>
@@ -151,6 +178,25 @@ function View() {
                     alt="Movie Photo"
                   />
                 ))}
+              </div>
+            </div>
+          )}
+
+          {}
+          {isVideoPlaying && currentVideoUrl && (
+            <div className="video-modal">
+              <div className="video-overlay" onClick={handleCloseVideo}></div>
+              <div className="video-container">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={currentVideoUrl}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+                <button className="close-video" onClick={handleCloseVideo}>Close</button>
               </div>
             </div>
           )}

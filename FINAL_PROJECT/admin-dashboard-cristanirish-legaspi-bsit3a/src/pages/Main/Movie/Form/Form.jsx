@@ -296,6 +296,7 @@ const Form = () => {
               name="releaseDate"
               value={formData.releaseDate}
               onChange={handleInputChange}
+              placeholder="Enter movie release Date"
             />
           </div>
           <div className="form-field">

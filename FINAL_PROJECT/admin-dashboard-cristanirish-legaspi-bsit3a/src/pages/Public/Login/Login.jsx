@@ -52,7 +52,7 @@ function Login() {
     })
       .then((res) => {
         console.log(res);
-        //store response access token to localstorage
+     
         localStorage.setItem('accessToken', res.data.access_token);
         navigate('/main/movies');
         setStatus('idle');
@@ -61,7 +61,7 @@ function Login() {
         setError(e.response.data.message);
         console.log(e);
         setStatus('idle');
-        // alert(e.response.data.message);
+       
       });
   };
 

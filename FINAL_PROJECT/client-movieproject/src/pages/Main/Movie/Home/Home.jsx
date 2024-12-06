@@ -12,7 +12,7 @@ const Home = () => {
   const { movieList, setMovieList, setMovie } = useMovieContext();
 
   const getMovies = () => {
-    // Fetch the movies from the API
+    
     axios
       .get('/movies')
       .then((response) => {
@@ -65,8 +65,8 @@ const Home = () => {
             key={movie.id}
             movie={movie}
             onClick={() => {
-              navigate(`/view/${movie.id}`); // Navigate to the movie detail page
-              setMovie(movie); // Optionally set the movie context to store the movie info
+              navigate(`/view/${movie.id}`);  
+              setMovie(movie); 
             }}
           />
         ))}

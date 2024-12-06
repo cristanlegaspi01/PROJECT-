@@ -7,7 +7,7 @@ import axios from 'axios';
 function Register() {
   const navigate = useNavigate();
 
-  // State for form fields
+ 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,7 +23,7 @@ function Register() {
   const [status, setStatus] = useState('idle');
   const [debounceState, setDebounceState] = useState(false);
 
-  // Refs for input elements
+ 
   const refs = {
     email: useRef(),
     password: useRef(),

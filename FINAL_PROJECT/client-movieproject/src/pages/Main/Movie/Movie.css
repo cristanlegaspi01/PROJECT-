@@ -1,0 +1,25 @@
+.movie-page {
+    font-family: Arial, sans-serif;
+  }
+  
+  .movie-header {
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .movie-title {
+    font-size: 3rem;
+  }
+  
+  .movie-main {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .home-container {
+    margin-top: 20px;
+  }
+  
